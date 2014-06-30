@@ -10,6 +10,9 @@ gem 'rails', '4.1.1'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets', '2.11.0'
 
+# For password hashing 
+gem 'bcrypt-ruby', '3.1.2'
+
 
 # jr to solve rspec bug 
 
