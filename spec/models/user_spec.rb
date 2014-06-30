@@ -9,9 +9,7 @@ describe User do
 
 
 # Creates an example user, for the test 
-  #before { @user = User.new(name: "Example User", email: "user@example.com") }
-  before do 
-    
+  before do     
     @user = User.new(name: "Example User", email: "user@example.com", 
                      password: "foobar", password_confirmation: "foobar")
   end
@@ -22,14 +20,16 @@ describe User do
   subject { @user }
 
 
-# Test for the existence
+# Test for 
+
+  # Existence
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
 
+  # Authentication 
   it { should respond_to(:authenticate) }
 
 
@@ -50,13 +50,11 @@ describe User do
     before { @user.name = " " }
     it { should_not be_valid }
   end
-
 # Email 
   describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
   end
-
 
 
 # Test for length
@@ -67,10 +65,7 @@ describe User do
   end
 
 
-
-
 # Test for format 
-
 # Invalid 
   describe "when email format is invalid" do
     it "should be invalid" do
@@ -82,7 +77,6 @@ describe User do
       end
     end
   end
-
 # Valid 
   describe "when email format is valid" do
     it "should be valid" do
@@ -106,6 +100,7 @@ describe User do
 
     it { should_not be_valid }
   end
+
 
 
 
@@ -134,20 +129,19 @@ describe User do
   
   # User authentication 
 
-  # Lenght validation. Should be at least six characters long 
+  # Length validation. Should be at least six characters long 
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
 
 
+
 # The two cases of pwd match and mismatch 
   describe "return value of authenticate method" do
 
-
-# let method provide a way to create local variables inside tests 
-
     # Saves the user to the db, so that it can be retrieved by the find_by method 
+    # let method provide a way to create local variables inside tests 
     before { @user.save }
     let(:found_user) { User.find_by(email: @user.email) }
 
