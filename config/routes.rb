@@ -4,12 +4,19 @@
 SampleApp2::Application.routes.draw do
 
 
+# Add a new route : users resource 
+  resources :users
+
+
   root 'static_pages#home'
+
+  match '/signup',  to: 'users#new',            via: 'get'  
+  
   #get "static_pages/home"
   #get "static_pages/help"
   #get "static_pages/about"
   #get "static_pages/contact"
-  get 'users/new'
+  #get 'users/new'
 
 # Creates named routes and urls. 
   #match '/', to: 'static_pages#home', via: 'get'
